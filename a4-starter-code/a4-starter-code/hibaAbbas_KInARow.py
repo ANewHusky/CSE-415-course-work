@@ -70,7 +70,7 @@ class OurAgent(KAgent):  # Keep the class name "OurAgent" so a game master
             # Optionally, import your LLM API here.
             # Then you can use it to help create utterances.
             
-            self.AIclient = genai.Client(api_key="AIzaSyCUQ1p6OZazKBVHb6BMV6HGLkXrOul01nc")
+            self.AIclient = genai.Client(api_key="Put Your API here")
             
            
         # Write code to save the relevant information in variables
