@@ -1,0 +1,634 @@
+% Assignment 6 --- student-template.tex
+% CSE 415, Winter 2025
+% Paul G. Allen School of Computer Science and Engineering
+% University of Washington
+
+\documentclass[12pt]{article}
+\setlength{\oddsidemargin}{0in}
+\setlength{\evensidemargin}{0in}
+\setlength{\textwidth}{6.5in}
+\setlength{\textheight}{8.0in}
+ 
+\usepackage{tikz,amsmath,enumerate}
+\usetikzlibrary {arrows.meta,bending,positioning,quotes}
+\usepackage{calc,enumerate,tabu,graphicx,multicol,fullpage,amssymb,bm}
+\usepackage{float,booktabs,hyperref,makecell}
+\usepackage{fancyhdr}
+\setlength{\headheight}{16pt}
+
+
+\newlength\longanswerwidth
+\setlength{\longanswerwidth}{\textwidth-1.0cm}
+\newlength\longsubanswerwidth
+\setlength{\longsubanswerwidth}{\textwidth-1.8cm}
+\newlength\shortanswerwidth
+\setlength{\shortanswerwidth}{2cm}
+
+\newcommand{\answerbox}[2]{\fbox{\begin{minipage}{#1}\hfill\vspace{#2}\end{minipage}}}
+\setlength{\headheight}{16pt}
+
+\newcommand{\mycolumnwidth}{13cm}
+
+% The following is for an answer box that contains a solution/answer, in blue text.
+\newcommand{\answerboxSol}[3]{\fbox{\begin{minipage}[c][#2][t]{#1}{\textcolor{blue}{#3}}\hfill\end{minipage}}}
+
+\newenvironment{qparts}{\begin{enumerate}[{(}a{)}]}{\end{enumerate}}
+\newenvironment{qsubparts}{\begin{enumerate}[{(}i{)}]}{\end{enumerate}}
+\newcommand\independent{\protect\mathpalette{\protect\independenT}{\perp}}
+\def\independenT#1#2{\mathrel{\rlap{$#1#2$}\mkern2mu{#1#2}}}
+
+\begin{document}
+
+\pagestyle{empty}
+
+\begin{center} 
+{\large \bf CSE 415, Winter 2025}  \\
+\vspace{0.5cm}
+
+{\huge \bf Assignment 6} 
+\vspace{1cm}
+
+\hfill Last name: {\textcolor{blue}{\underline{Doe \hspace{1cm}}}}
+ First name: {\textcolor{blue}{\underline{Jane\hspace{1cm}}}} \hfill UWNetID: {\textcolor{blue}{\underline{janedoe987\hspace{1cm}}}} \hfill \\
+\end{center}
+
+\vspace{0.2cm}
+
+Due Monday night March 10 via Gradescope at 11:59 PM. 
+(Note: Due to the tight schedule at the end of the quarter,
+there will be no grace days on this assignment,
+and two days to turn in the assignment late -- 
+for a percent penalty of 25 percent per day.)
+You may turn in either of the following types of PDFs: 
+(1) Scans of these pages that include
+your answers (handwriting is OK, if it's clear), or 
+(2) Documents you create with the answers, saved as PDFs. 
+When you upload to Gradescope, you'll be prompted to 
+identify where in your document your answer to each 
+question lies.
+
+Perform and provide answers for each of the seven exercises.  
+Each TA on the staff is responsible for two
+of the questions.  These are intended to take
+15-40 minutes each if you know how to do them. 
+Each is worth between 15 points and 20 points.
+The total possible points for completing the exercises is 
+150 (not including the extra credit in the formatting
+bonus, described below).
+
+If any corrections have to be made to this assignment, 
+these will be posted in ED.
+\vspace{0.2cm}
+
+This is an individual-work assignment. Do not collaborate on
+this assignment.  Do not use AI systems such as ChatGPT.
+\vspace{0.2cm}
+
+Prepare your answers in a neat, easy-to-read
+PDF. Our grading rubric will be set up such that 
+when a question is not easily readable
+or not correctly tagged or with pages repeated or 
+out of order, then points will be
+be deducted.  However, if all answers are
+clearly presented, in proper order, and
+tagged correctly when submitted to Gradescope,
+we will award a 5-point bonus.  (Restated, one could lose
+the bonus due to poor photo contrast, handwriting that
+graders have difficulty reading, or mess-ups with the
+tagging of the answers when submitting to Gradescope.)
+\vspace{0.2cm}
+
+If you choose to typeset your answers 
+in Latex using the template file for this document,
+please put your answers in \textcolor{blue}{blue} while
+leaving the original text black.
+Using Latex is not required for the bonus points, 
+but it might help in achieving a neat, easy-to-read PDF.
+\vspace{0.2cm}
+
+
+\hrulefill
+\vspace{0.2cm}
+
+\newpage
+\pagestyle{fancy}
+\fancyhead{} % clear all header fields
+\renewcommand{\headrulewidth}{0pt} % no line in header area
+
+\fancyfoot{} % clear all footer fields
+\fancyfoot[C]{\thepage}
+\fancyfoot[L]{Paul G. Allen School of CSE.}
+\fancyfoot[R]{CSE 415, Wi'25, A6.}
+
+\newpage
+\newpage
+%------------------------
+%-----Question 1-----
+%------------------------
+\section{MDP Basics}
+(20 points)
+This exercise covers basic properties of an MDP. 
+
+\begin{qparts}
+\item (4 pts)
+    Suppose that the transition function of TOH2-World is deterministic.
+    
+    Also, suppose that all transitions have a reward of $-1$, except
+    the transition from $g$ (the ``goal'') to the Terminal state, 
+    which has a reward of $100$.  Next assume that an agent, finding
+    itself in an arbitrary state of this world, 
+    not using any discounting, seeks to maximize its total reward in
+    whatever time remains in its episode. (Say it takes one second
+    per transition in this world.)  Assuming it acts optimally,
+    there will be a specific sum of rewards that it can get from
+    each state.  Write down that value in each state below.
+    
+\fbox{\begin{minipage}{\longanswerwidth}
+\begin{center}
+    \includegraphics[width = 4in]{stud-temp-figs/TOH-graph-2-disk.png}\\
+\end{center}
+\end{minipage}} 
+
+\item (4 pts.) Drawing on the same diagram, use arrowheads on some of the
+edges to indicate an optimal policy.
+
+\item (3 pts.) Suppose state $i$ is a secondary goal node.  When the agent is
+at $i$, the only legal action is Exit, which transitions the agent
+to the Terminal state and yields a reward of 10.  Using the
+copy of the graph below, write the value of each state assuming a
+time horizon of 2 moves.  Except for the addition of the new goal assume that the reward function is as before.  (and the main goal is still
+the main goal).\\
+\fbox{\begin{minipage}{\longanswerwidth}
+\begin{center}
+    \includegraphics[width = 4in]{stud-temp-figs/TOH-graph-2-disk.png}\\
+\end{center}
+\end{minipage}} 
+\item (3 pts.) Also, indicate the optimal policy using arrowheads on this graph.
+
+\item (3 pts.) Now assume the agent uses discounting of future rewards,
+with $\gamma = 0.5$.  Show the value of each node now.
+
+
+\fbox{\begin{minipage}{\longanswerwidth}
+\begin{center}
+    \includegraphics[width = 4in]{stud-temp-figs/TOH-graph-2-disk.png}\\
+\end{center}
+\end{minipage}} 
+
+\item (3 pts.) Indicate the optimal policy in this case using arrowheads on this graph.
+\end{qparts}
+
+\newpage
+%------------------------
+%-----Question 2-----
+%------------------------
+\section{Basic Q-Learning in an MDP}
+(15 points) 
+Use the Markov Decision Process (MDP) diagram below to help you as you answer the following question  Q Learning.
+The states are $A, B, C, D, E, F, G$, and an unshown Terminal
+state.
+\bgroup
+\def\arraystretch{3}
+
+\begin{table}[!h]
+\centering
+\begin{tabular}{|p{1.5cm}|p{1.5cm}|p{1.5cm}|p{1.5cm}|p{1.5cm}|p{1.5cm}|p{1.5cm}|}
+\hline
+$A$ & $B$ (-10) & $C$ & $D$ & $E$ & $F$ & $G$ (+10) \\ \hline
+\end{tabular}
+\end{table}
+\egroup
+
+Use Q Learning to estimate the true Q values of this MDP given the observed state transitions below. For each state transition, indicate which Q value is changing by giving the state and action associated with that value and giving its new value. You may wish to keep your own diagram of the current values while you work through the given transitions. 
+    
+You may assume that at states $\{A, C, D, E, F\}$ there are two allowed actions, \{Left, Right\}, at states $\{B, G\}$, the only allowable action is the Exit action, and at the Terminal state there are no valid actions. Make sure to process the transitions in the order provided. All Q values are initialized to 0. Use a discount factor of $\gamma=0.8$ and a learning rate of $\alpha=0.5$.
+    
+\begin{table}[!h]
+\centering
+\begin{tabular}{l|l|l|l|l|l|l}
+  \multicolumn{4}{l|}{State Transitions} & \multicolumn{3}{l}{New Q Values} \\
+  State (s) & Action (a) & New State (s') & Reward (r) & State & Action & Q(S,A) \\ \hline
+  A & Right & B & $-1$ &  &  &  \\ \hline
+  B & Exit & Terminal & $-10$ &  &  &  \\ \hline \hline
+  E & Right & D & $-1$ &  &  &  \\ \hline
+  D & Right & E & $-1$ &  &  &  \\ \hline
+  E & Right & F & $-1$ &  &  &  \\ \hline
+  F & Right & G & $-1$ &  &  &  \\ \hline
+  G & Exit & Terminal & 10 &  &  &  \\ \hline
+\end{tabular}
+\end{table}
+
+\newpage
+%------------
+% Question 3
+%------------
+\section{Joint Distributions and Inference}
+(15 points) 
+ Let $C$ represent the proposition that it is cloudy in Seattle.
+Let $R$ represent the proposition that it is raining in Seattle. 
+Consider the table given below.
+\[
+\begin{array}{||c|c|c||}
+\hline
+C & R & P(C, R)\\
+\hline\hline
+cloudy & rain & 0.53 \\
+\hline
+cloudy & sun & 0.13 \\
+\hline
+clear & rain & 0.02 \\
+\hline
+clear & sun & 0.32 \\
+\hline
+\end{array}
+\]
+\begin{qparts}
+\item (2 points) Compute the marginal distribution
+$P(C)$ and express it as a table.\\
+\answerboxSol{0.94\textwidth}{2.5em}{(your answer goes here)}
+
+\item (2 points) Similarly, compute the marginal 
+distribution $P(R)$ and express it as a table.
+\\
+\answerboxSol{0.94\textwidth}{2.5em}{(your answer goes here)}
+
+\item (2 points) Compute the conditional distribution
+$P(R|C=cloudy)$ and express it as a table.
+Show your work/calculations.
+\\
+\answerboxSol{0.94\textwidth}{2.5em}{(your answer goes here)}
+
+\item (2 points) Compute the conditional distribution
+$P(C|R=sun)$ and express it as a table. Show your work/calculations.
+\\
+\answerboxSol{0.94\textwidth}{2.5em}{(your answer goes here)}
+
+\item (3 points) Is it true that $C \independent R$?  
+(i.e., are they statistically independent?) Explain your reasoning.
+\\
+\answerboxSol{0.94\textwidth}{1.5em}{(your answer goes here)}
+
+\item (4 points) Suppose you decide to track additional 
+weather patterns of Seattle such as temperature (hot/cold), 
+humidity (humid/dry), and wind (windy/calm) denoted as the 
+random variables $T$, $W$, $H$ respectively.
+Is it possible to compute $P(C, R, T, W, H)$ as a product of 
+five terms? If so, show your work. 
+What assumptions need to be made, if any? Otherwise, explain why it is not possible.
+\\
+\answerboxSol{0.94\textwidth}{2.5em}{(your answer goes here)}
+\end{qparts}
+
+\newpage
+%------------------------
+%-----Question 4-----
+%------------------------
+\section{Bayes Net Structure and Meaning}
+(20 points) 
+Consider a Bayes net whose graph is shown below.
+\begin{center}
+  \includegraphics[scale=0.7]{stud-temp-figs/Four-node-Bayes-net.png}
+\end{center}
+Random variable $W$ has a domain with two values $\{w_1, w_2\}$; 
+the domain for $X$ has three values: $\{x_1, x_2, x_3)$; $Y$'s  
+domain has three values: $\{y_1, y_2, y_3\}$; 
+and $Z$'s domain has two values: $\{z_1, z_2\}$.
+\begin{qparts}
+  \item (3 points) Give a formula for the joint distribution 
+  of all four random variables,
+  in terms of the marginals (e.g., $P(W=w_i)$), 
+  and conditionals that must be part
+  of the Bayes net (e.g., $P(Z=z_m | X=X_j, Y=y_k)$).\\
+\answerboxSol{0.94\textwidth}{1.5em}{(your answer goes here)}
+
+  \item (1 point) How many probability values belong in the
+  (full) joint distribution table for this set of random variables? 
+\answerboxSol{3cm}{1.5em}{(your answer)}
+
+  \item (2 points) For each random variable: give the
+  number of probability values in its marginal (for $W$) or
+  conditional distribution table (for the others).
+\begin{description}
+\item[$W$:]  \answerboxSol{3cm}{1em}{(your answer)}
+\item[$X$:]  \answerboxSol{3cm}{1em}{(your answer)}
+\item[$Y$:]  \answerboxSol{3cm}{1em}{(your answer)}
+\item[$Z$:]  \answerboxSol{3cm}{1em}{(your answer)}
+\end{description}    
+  \item (4 points)
+  For each random variable, give the number of {\it non-redundant}
+  probability values in its table from (c).
+\begin{description}
+\item[$W$:]  \answerboxSol{3cm}{1em}{(your answer)}
+\item[$X$:]  \answerboxSol{3cm}{1em}{(your answer)}
+\item[$Y$:]  \answerboxSol{3cm}{1em}{(your answer)}
+\item[$Z$:]  \answerboxSol{3cm}{1em}{(your answer)}
+\end{description}    
+\end{qparts} 
+
+%newpage
+%------------------------
+%-----Question 5-----
+%------------------------
+\section{D-Separation} 
+
+(20 points) 
+Consider the automobile engine-diagnosis Bayes Net below.\vspace{-0.25cm}
+\begin{center}
+    \includegraphics[width=4in]{stud-temp-figs/New-Auto-Diagnosis-Bayes-Net.png}
+% Source: https://bnw.genenetwork.org/sourcecodes/layout_svg_no.php?My_key=qRX
+\end{center}
+
+\begin{qparts}
+\item (1 point) Assuming no observations have been made,
+are $A$ and $B$ independent?\\
+\answerboxSol{\longanswerwidth}{1em}{(your answer goes here)}
+
+\item (1 point) From the diagram can we assume that,
+are $A$ and $C$ independent?\\
+\answerboxSol{\longanswerwidth}{1em}{(your answer goes here)}
+
+\item (5 points) List all ``undirected" paths from 
+$C$ to $S$.\\
+\answerboxSol{\longanswerwidth}{3em}{(your answer goes here)}
+
+\item (3 points) Which of the above are active paths?\\
+\answerboxSol{\longanswerwidth}{2em}{(your answer goes here)}
+
+\item (2 points) Is it guaranteed that $A \independent S |Q, C$? 
+If not, give an active path from $A$ to $S$.\\
+\answerboxSol{\longanswerwidth}{1em}{(your answer goes here)}
+
+\item (2 points) Is it guaranteed that $B \independent S | V, K, T$? 
+If not, give an active path from $B$ to $S$.\\
+\answerboxSol{\longanswerwidth}{1em}{(your answer goes here)}
+
+\item (2 points) Is it guaranteed that $P \independent B | S$? 
+If not, give an active path from $P$ to $B$.\\
+\answerboxSol{\longanswerwidth}{1em}{(your answer goes here)}
+
+\item (2 points) Is it guaranteed that $A \independent M | F, V, S$? 
+If not, give an appropriate active path.\\
+\answerboxSol{\longanswerwidth}{1em}{(your answer goes here)}
+
+\item (2 points) What is the longest loop-free undirected
+path you can find in this graph?  What nodes would need
+to be observed to make it an active path?\\
+\answerboxSol{\longanswerwidth}{2em}{(your answer goes here)}
+
+\end{qparts}
+
+\newpage
+%------------------------
+%-----Question 6-----
+%------------------------
+\section{Choosing Hidden Sequences}
+(20 points) Consider the Jones family -- Mom, Dad, Jim, Sally.
+Jim and Sally are twin
+siblings, and both 16 years old.  Once a month, the family goes out for
+ethnic food -- it's either Thai or Indian.  Jim has his list of favorite
+restaurants, and Sally has her own list of her favorites.
+Each month, Dad uses one of the lists to choose what type of
+food the family will eat during their outing.
+He tends to stick with the same list more often than switch, and he tends
+to slightly favor Jim's list, maybe because of his own preferences.
+
+With the current list, Dad selects a restaurant at random, assuming
+the restaurants on the list are equally likely to be picked. But they don't
+necessarily go to that restaurant.  If the restaurant is Indian, Jim gets
+to pick any Indian restaurant from his list, and they go there.  If the
+restaurant is Thai, then Sally gets to pick any Thai restaurant from
+her list, and they go there.  
+\begin{verbatim}
+Jim's list:  
+  My-Pad-Thai (Thai), Punjabi Kitchen (Indian), Delhi Curry (Indian).
+Sally's list: 
+  Bangkok Bites (Thai), Mango Mansion (Thai), 
+  Siam Shack (Thai), Delhi Curry (Indian).
+\end{verbatim}
+
+Then after Dad makes his random selection from the current list,
+he uses some kind of spinning device that we don't understand, and he
+determines whether to switch lists for next time according to the following
+transition probabilities.
+
+If the current list is Jim's, the probably of staying with Jim's is 0.7,
+ and switching to Sally's is 0.3.
+If the current list is Sally's the probably of staying with Sally's is 0.6,
+ and switching to Jim's is 0.4.
+
+\begin{qparts}
+\item (2 points)
+Assume Dad starts the year using Sally's list for January's outing.
+He's public about that, but in subsequent months, he does not tell
+anyone which list he is using.
+
+One possible 3-month sequence is list uses is:
+Sally's, Sally's, Jim's (for January, February, March).
+What is the probability of that sequence of list usages,
+without considering the ethnicities of the restaurants they visited?
+\\
+\answerboxSol{\longanswerwidth}{3em}{(your answer goes here)}
+
+\item (2 points)
+Suppose that quarter of the year they end up going to an Indian restaurant
+in January, a Thai restaurant in February, and a Thai restaurant in March.
+Taking that additional information into consideration.
+what is the probability of that same list-usage sequence
+and seeing that sequence of cuisine choices?\\
+(i.e., compute P($X_1 = $Sally, $X_2 = $Sally, $X_3 = $Jim, $E_1 = $Indian, $E_2 = $Thai, $E_3 = $Thai).\\
+\answerboxSol{\longanswerwidth}{4em}{(your answer goes here)}
+
+\item (6 points)
+What is the most likely sequence of list usages by Dad given that same
+restaurant ethnicity sequence? (Indian, Thai, Thai).
+Use the diagram template below to create a trellis diagram
+for this problem.  If the probability coming into a
+dashed arrow is 0, leave it dashed.  Otherwise, write over
+the dashed line to make it a more solid arrow.
+Before identifying the most likely list-usage sequence,
+compute, at each node, the probability of reaching that
+node along a most likely path from the Sally-in-January node.
+The probability value 1 is provided on that starting node,
+since it's a given in this exercise.
+Naturally, the probability of getting to the Jim-in-January node is 0,
+because we're given that Sally's list is the one being used
+in the first month (January).  Use the Viterbi algorithm
+to get these probabilities at the other 4 nodes of the diagram.
+Finally, highlight the most probable path that starts at
+Sally-in-January and ends at one of the nodes in the March
+column.  (Hint: the HMM worksheet involves
+a similar computation.)  Show the factors you are multiplying
+on the appropriate edges of the trellis.  For the
+March column, at least, use a calculator to show the
+two probabilities to 4 decimal places.
+\\
+\\
+    \fbox{\includegraphics[width=6in]{stud-temp-figs/HMM-Trellis-Diagram-Template.png}}
+
+\item (2 points)
+Suppose Mom somehow gets suspicious that Sally's preferences are not
+being considered fairly, in comparison with Jim's.  
+What is a possible basis for that?
+\\
+\answerboxSol{\longanswerwidth}{3em}{(your answer goes here)}
+\newpage
+\item (3 points)
+Compute the stationary probability of Jim's list vs Sally's list
+being used. 
+(Assume that when 
+the sequence extends beyond 12 months, Dad does NOT automatically go
+back to Sally's list each January. In other words,
+the Markov Model represented by the transition CPT is
+not limited to 12 time steps.)
+
+Show the needed
+equations
+before you solve them, and show the steps you use in solving
+them.\\
+\answerboxSol{\longanswerwidth}{7em}{(your answer goes here)}
+
+\item (2 points)
+Compute the marginal probabilities of the family's having
+Indian and Thai food on their outings, corresponding to the
+stationary probabilities of list usages. 
+\\
+\answerboxSol{\longanswerwidth}{6em}{(your answer goes here)}
+
+\item (3 points)
+To what extent are these distributions (that you computed in
+parts e and f) biased against or for each child's preferences? Explain.  
+There are three pertinent points you can describe here.\\
+\answerboxSol{\longanswerwidth}{4em}{(your answer goes here)}
+\end{qparts}
+
+\newpage
+%------------------------
+%-----Question 7-----
+%------------------------
+\section{Perceptrons} 
+(20 points) You are planning an exciting road trip across California 
+and need to decide which cities to include in your itinerary. 
+You classify cities into two categories: Must-Visit Cities and Skip Cities.
+A city is labeled as Must-Visit (+1) if it is highly attractive 
+for tourists, while a city is labeled as Skip ($-1$) if it 
+does not meet your travel preferences.
+You decide to use a perceptron model to classify cities 
+based on their features:\\
+Dataset Features and Specification:\\
+Natural Attractions: Represented as low = $-2$, moderate = 0, high = 2.\\
+Accommodation Cost: Represented as cheap = 1, moderate = 2, expensive = 3.\\
+Travel Distance: Represented as far = $-2$, near = 2.\\
+
+\textbf{Perceptron Parameters}
+\begin{itemize}
+    \item The perceptron has a weight vector, ${w}$, with four components: bias term, natural attractions, accommodation cost, and travel distance.
+    \item Initial weights: $w = [1, 0, 0, 0]$.
+    \item Threshold: $0$.
+    \item Learning rate: $1$.
+\end{itemize}
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|l|l|l|l|l|}
+    \toprule
+    \makecell{\textbf{Example}\\\textbf{Number}} & \makecell{\textbf{Natural}\\\textbf{Attractions}} & 
+    \makecell{\textbf{Accommodation}\\\textbf{Cost}} & 
+    \makecell{\textbf{Travel}\\\textbf{Distance}} & \textbf{Label} \\
+    \midrule
+    1 & high & expensive & near & Must-Visit \\
+    2 & moderate & moderate & far & Skip \\
+    3 & high & moderate & near & Skip \\
+    4 & moderate & expensive & near & Must-Visit \\
+    5 & low & cheap & fast & ??? \\
+    \bottomrule
+    \end{tabular}
+    \caption{\label{table:road_trip_dataset}Road Trip Dataset}
+\end{table}
+
+\begin{qparts}
+\item (4 points) What would be the updated weights $\mathbf{w}$
+after processing example number 1?
+
+\answerboxSol{\longanswerwidth}{2cm}{(your answer goes here)}
+\item (3 points) What would be the updated weights $\mathbf{w}$
+after processing example number 2?
+\answerboxSol{\longanswerwidth}{2cm}{(your answer goes here)}
+
+\item (3 points) What would be the updated weights $\mathbf{w}$ 
+after processing example number 3?
+\answerboxSol{\longanswerwidth}{2cm}{(your answer goes here)}
+\item (3 points) What would be the updated weights $\mathbf{w}$ 
+after processing example number 4?
+\answerboxSol{\longanswerwidth}{2cm}{(your answer goes here)}
+\item  (3 points) What is your prediction for the label of 
+example number 5 based on the final weights?\\
+\answerboxSol{\longanswerwidth}{2cm}{(your answer goes here)}
+\item (4 points) Is convergence guaranteed for this perceptron 
+and data set? Why or why not?\\
+\answerboxSol{\longanswerwidth}{2cm}{(your answer goes here)}
+
+\end{qparts}
+
+\newpage
+%------------------------
+%-----Question 8----- 
+%------------------------
+\section{AI and the Potential for Harm} 
+(20 points)
+\href{https://en.wikipedia.org/wiki/Isaac_Asimov}{Isaac Asimov} 
+was an American scientist and author who wrote a collection 
+of short stories about robots. In his fictional world, 
+robot behavior was governed by the three laws of robotics:
+\begin{enumerate}
+    \item A robot may not injure a human being or, 
+    through inaction, allow a human being to come to harm.
+    \item A robot must obey orders given it by human beings 
+    except where such orders would conflict with the First Law.
+    \item A robot must protect its own existence as long as such 
+protection does not conflict with the First or Second Law.
+\end{enumerate}
+
+The stories often dealt with paradoxical situations 
+arising from the attempted application of these laws. 
+Despite their shortcomings, the laws have been influential 
+in considerations of the ethics of artificial intelligence. 
+
+\vspace{1cm}
+
+For this question, consider one of the issues listed below. For your selected issue, consider how might Asimov's Laws serve as a starting off point for guidelines to promote ethical use of AI technologies (although the laws are written to apply to robots, consider them as being relevant more generally for artificial intelligence technologies). The links provided lead to optional resources that may help you become familiar with each issue listed.
+
+\begin{itemize}
+\item Violations of personal intellectual property rights - AI requires vast amounts of training data, often scraped from internet sites. Writers, musicians, and artists have been especially affected by having their work taken without their permission for such training. For more information on this issue, see: \href{https://hbr.org/2023/04/generative-ai-has-an-intellectual-property-problem}{Generative AI Has an Intellectual Property Problem}
+\item Deep fakes, bots, and misinformation - Using AI technologies, the dissemination of false information or false interpretations of and responses to events has become widespread. For more information on this issue, see: \href{https://buffett.northwestern.edu/documents/buffett-brief_the-rise-of-ai-and-deepfake-technology.pdf}{The Rise of Artificial
+Intelligence and Deepfakes} and \href{https://www.bbc.co.uk/bitesize/articles/zjhg47h}{What are 'bots' and how can they spread fake news?}
+\item Violations of personal privacy - A large  proportion of social interaction currently occurs online. What we view and what we respond to provides insights into our beliefs and values. Combined with other data that is available about us online, it can feel as if the concept of personal privacy is obsolete. For more information on this issue, see: \href{https://www.reuters.com/legal/legalindustry/privacy-paradox-with-ai-2023-10-31/}{The privacy paradox with AI}
+\item The use of AI in warfare - From automated drones to more sophisticated systems that can analyze and respond to situations in a human-like manner, AI technologies are likely to be increasingly used in areas of conflict as the technologies become ever more sophisticated. For more information on this issue, see: \href{https://gjia.georgetown.edu/2024/07/12/war-artificial-intelligence-and-the-future-of-conflict/}{War, Artificial Intelligence, and the Future of Conflict}
+\item Environmental costs of AI - Training, deploying, and fine-tuning generative AI models requires enormous quantities of electricity and water. For more information on this issue, see: \href{https://news.mit.edu/2025/explained-generative-ai-environmental-impact-0117}{Explained: Generative AI’s environmental impact}
+\item An issue of your own choosing - If choosing this selection, please give a short description of the issue and a link to a resource that provides a basic introduction to your issue as part of your response to the first item below
+\end{itemize}
+
+Please answer the following questions:
+\begin{qparts}
+
+\item (1 points) Which issue have you selected to address?\
+
+\answerboxSol{\longanswerwidth}{3cm}{(your answer goes here)}
+
+\item (5 points) Asimov's Laws assume the AI (the robot) is self aware. To date, a truly self-aware AI has not been developed, and clearly the potential for harm does not require self awareness. Given the ways AI is used currently, \textbf{how might the laws still contribute to a discussion of the ethical use of AI and to the development of ethical AI technologies}? You might want to consider questions such as: Where is AI used? Who controls it? What are the consequences when it works as intended? When it doesn't work as intended?
+
+\answerboxSol{\longanswerwidth}{7cm}{(your answer goes here)}
+
+\item (5 points) How might your chosen issue violate the first law and "allow a human being to come to harm"?
+
+\answerboxSol{\longanswerwidth}{9cm}{(your answer goes here)}
+
+\item (5 points) Suggest at least one guideline for the use of AI that might be helpful in reducing the potential for the harm you described above.
+
+\answerboxSol{\longanswerwidth}{10cm}{(your answer goes here)}
+
+\item (4 points) Do you think it is possible to regulate the use of AI so that it is predominantly used in ways that are beneficial to humanity? If so, explain why you are optimistic about the use of AI and if not, explain why your views are perhaps more pessimistic.
+
+\answerboxSol{\longanswerwidth}{10cm}{(your answer goes here)}
+\end{qparts}
+
+\end{document}

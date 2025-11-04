@@ -1,0 +1,169 @@
+Welcome to ItrDFS
+Initial State:
+
+ Boat on the left
+Farmer on the left
+Fox on the left
+Chicken on the left
+Grain on the left
+
+len(OPEN)= 1; len(CLOSED)= 0; COUNT = 0
+OPEN is now:
+ Boat on the right
+Farmer on the right
+Fox on the left
+Chicken on the right
+Grain on the left
+
+len(OPEN)= 1; len(CLOSED)= 1; COUNT = 1
+OPEN is now:
+ Boat on the left
+Farmer on the left
+Fox on the left
+Chicken on the right
+Grain on the left
+
+len(OPEN)= 1; len(CLOSED)= 2; COUNT = 2
+OPEN is now:
+ Boat on the right
+Farmer on the right
+Fox on the right
+Chicken on the right
+Grain on the left
+,
+ Boat on the right
+Farmer on the right
+Fox on the left
+Chicken on the right
+Grain on the right
+
+len(OPEN)= 2; len(CLOSED)= 3; COUNT = 3
+OPEN is now:
+ Boat on the left
+Farmer on the left
+Fox on the right
+Chicken on the left
+Grain on the left
+,
+ Boat on the right
+Farmer on the right
+Fox on the left
+Chicken on the right
+Grain on the right
+
+len(OPEN)= 2; len(CLOSED)= 4; COUNT = 4
+OPEN is now:
+ Boat on the right
+Farmer on the right
+Fox on the right
+Chicken on the left
+Grain on the right
+,
+ Boat on the right
+Farmer on the right
+Fox on the left
+Chicken on the right
+Grain on the right
+
+len(OPEN)= 2; len(CLOSED)= 5; COUNT = 5
+OPEN is now:
+ Boat on the left
+Farmer on the left
+Fox on the right
+Chicken on the left
+Grain on the right
+,
+ Boat on the left
+Farmer on the left
+Fox on the left
+Chicken on the left
+Grain on the right
+,
+ Boat on the right
+Farmer on the right
+Fox on the left
+Chicken on the right
+Grain on the right
+
+len(OPEN)= 3; len(CLOSED)= 6; COUNT = 6
+OPEN is now:
+ Boat on the right
+Farmer on the right
+Fox on the right
+Chicken on the right
+Grain on the right
+,
+ Boat on the left
+Farmer on the left
+Fox on the left
+Chicken on the left
+Grain on the right
+,
+ Boat on the right
+Farmer on the right
+Fox on the left
+Chicken on the right
+Grain on the right
+
+len(OPEN)= 3; len(CLOSED)= 7; COUNT = 7
+You did it!!!!
+Solution path:
+
+ Boat on the left
+Farmer on the left
+Fox on the left
+Chicken on the left
+Grain on the left
+
+
+ Boat on the right
+Farmer on the right
+Fox on the left
+Chicken on the right
+Grain on the left
+
+
+ Boat on the left
+Farmer on the left
+Fox on the left
+Chicken on the right
+Grain on the left
+
+
+ Boat on the right
+Farmer on the right
+Fox on the right
+Chicken on the right
+Grain on the left
+
+
+ Boat on the left
+Farmer on the left
+Fox on the right
+Chicken on the left
+Grain on the left
+
+
+ Boat on the right
+Farmer on the right
+Fox on the right
+Chicken on the left
+Grain on the right
+
+
+ Boat on the left
+Farmer on the left
+Fox on the right
+Chicken on the left
+Grain on the right
+
+
+ Boat on the right
+Farmer on the right
+Fox on the right
+Chicken on the right
+Grain on the right
+
+Length of solution path found: 7 edges
+Number of states expanded: 7
+Maximum length of the open list: 3
